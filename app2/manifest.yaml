@@ -44,7 +44,7 @@ metadata:
     #kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:022499022353:certificate/03d12fc8-f497-407d-8ecd-f067e0f61136
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:022499022353:certificate/2a6eaec5-1a3f-4f31-b8f7-d6e919e299e3
     alb.ingress.kubernetes.io/listen-ports: '[ {"HTTPS", 443} ]'
     alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
     alb.ingress.kubernetes.io/group.name: expense #This grp indicates that created alb will be in this grp expense, and as this is the same group for app1 also, now this ingress lb routes traffic to ingress to ingress rules -> service => pods(app1 and app2 pods)
