@@ -111,7 +111,7 @@ kind: Ingress
 metadata:
     name: app1
     annotations:
-      kubernetes.io/ingress.class: alb
+      #kubernetes.io/ingress.class: alb
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
       alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:022499022353:certificate/2a6eaec5-1a3f-4f31-b8f7-d6e919e299e3
@@ -119,7 +119,7 @@ metadata:
       alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
       alb.ingress.kubernetes.io/group.name: expense
 spec:
-    #ingressClassName: alb
+    ingressClassName: alb
     rules:
     - host: "app1.mohansai.online"
       http:
