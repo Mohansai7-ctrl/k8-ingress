@@ -49,14 +49,14 @@ metadata:
     alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
     alb.ingress.kubernetes.io/group.name: expense #This grp indicates that created alb will be in this grp expense, and as this is the same group for app1 also, now this ingress lb routes traffic to ingress to ingress rules -> service => pods(app1 and app2 pods)
 spec:
-  rules:
-  - host: "app2.mohansai.online"
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: app2
-            port:
-              number: 80
+    rules:
+    - host: "app2.mohansai.online"
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: app2
+              port:
+                number: 80
