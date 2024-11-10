@@ -41,7 +41,7 @@ kind: Ingress
 metadata:
   name: app2
   annotations:
-    kubernetes.io/ingress.class: alb
+    #kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:022499022353:certificate/03d12fc8-f497-407d-8ecd-f067e0f61136
@@ -49,6 +49,7 @@ metadata:
     alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
     alb.ingress.kubernetes.io/group.name: expense #This grp indicates that created alb will be in this grp expense, and as this is the same group for app1 also, now this ingress lb routes traffic to ingress to ingress rules -> service => pods(app1 and app2 pods)
 spec:
+    ingressClassName: alb
     rules:
     - host: "app2.mohansai.online"
       http:
