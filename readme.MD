@@ -1,5 +1,9 @@
 # Ingress Controller
 
+Reference Documentations:
+https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.10/deploy/installation/
+https://aws.amazon.com/blogs/opensource/kubernetes-ingress-aws-alb-ingress-controller/
+
 OpenIDConnect OAuth 2.0
 ```
 eksctl utils associate-iam-oidc-provider \
