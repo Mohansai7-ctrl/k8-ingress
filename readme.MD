@@ -50,4 +50,4 @@ kubectl get pods -n kube-system
 kubectl get svc -n kube-system
 
 If installed successfully you are able to see aws-load-balancer-controller-xyz123
-``
+```
