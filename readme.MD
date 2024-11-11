@@ -43,3 +43,11 @@ Final Installation
 ```
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=expense --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
 ```
+
+checking the installation:
+```
+kubectl get pods -n kube-system
+kubectl get svc -n kube-system
+
+If installed successfully you are able to see aws-load-balancer-controller-xyz123
+``
