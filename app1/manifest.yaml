@@ -1,4 +1,5 @@
 #Make sure create a certificate and provide certificate arn in Ingress annotation alb.ingress.kubernetes.io/certificate-arn:
+#before creating or executing make sure to install policies and drivers of ingress, OICD OAUTH2 and provide permissions via readme.
 
 
 
@@ -114,26 +115,27 @@ spec:
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
-metadata:
-  name: app1
-  annotations:
-    #kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:022499022353:certificate/7f8a5b74-56c3-4977-8c2b-08fc3644eea5
-    alb.ingress.kubernetes.io/listen-ports: '[ {"HTTPS": 443}]'
-    alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
-    alb.ingress.kubernetes.io/group.name: expense
-spec:
-  ingressClassName: alb
-  rules:
-  - host: "app1.mohansai.online"
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: app1
-            port:
-              number: 80
+metadata:   #give double tab for content
+    name: app1
+    annotations:
+      #kubernetes.io/ingress.class: alb
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      alb.ingress.kubernetes.io/target-type: ip
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:022499022353:certificate/7f8a5b74-56c3-4977-8c2b-08fc3644eea5
+      alb.ingress.kubernetes.io/listen-ports: '[ {"HTTPS": 443}]'
+      alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
+      alb.ingress.kubernetes.io/group.name: expense
+spec:   #give double tab for content
+    ingressClassName: alb
+    rules:
+    - host: "app1.mohansai.online"
+      http:
+        paths:
+        - pathType: Prefix
+          path: "/"
+          backend:
+            service:
+              name: app1
+              port:
+                number: 80
+
