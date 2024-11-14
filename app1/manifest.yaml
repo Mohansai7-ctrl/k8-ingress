@@ -1,75 +1,10 @@
+#first make sure of pushing the docker images mohansai7/app1:v1 and mohansai7/app2:v1 into dockerhub then only k8 manifest files will pull and use them to create simple nginx pods
 #Make sure create a certificate and provide certificate arn in Ingress annotation alb.ingress.kubernetes.io/certificate-arn:
 #before creating or executing make sure to install policies and drivers of ingress, OICD OAUTH2 and provide permissions via readme.
 
 
 
 # #writing a simple deployment and service for it and finally ingress resource
-
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: app1
-#   labels:
-#     name: app1
-#     tier: frontend
-
-# spec:
-#   replicas: 1
-#   selector:
-#     matchLabels:
-#       name: app1
-#       tier: frontend
-#   template:
-#     metadata:
-#       labels:
-#         name: app1
-#         tier: frontend
-#     spec:
-#       containers:
-#       - name: app1
-#         image: mohansai7/app1:v1
-
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: app1
-# spec:
-#   selector:
-#     name: app1
-#     tier: frontend
-#   ports:
-#   - name: nginx-svc-port
-#     protocol: TCP
-#     port: 80
-#     targetPort: 80
-
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#     name: app1
-#     annotations:
-#       kubernetes.io/ingress.class: alb
-#       alb.ingress.kubernetes.io/scheme: internet-facing
-#       alb.ingress.kubernetes.io/target-type: ip
-#       alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:022499022353:certificate/03d12fc8-f497-407d-8ecd-f067e0f61136
-#       alb.ingress.kubernetes.io/listen-ports: '[ {"HTTPS", 443}]'
-#       alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
-#       alb.ingress.kubernetes.io/group.name: expense  #This grp indicates that created alb will be in this grp expense, and as this is the same group for app2 also, now this ingress lb routes traffic to ingress to ingress rules -> service => pods(app1 and app2 pods)
-# spec:
-#     rules:
-#     - host: "app1.mohansai.online"
-#       http:
-#         paths:
-#         - pathType: Prefix
-#           path: "/"
-#           backend:
-#             service:
-#               name: app1
-#               port:
-#                 number: 80
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -138,4 +73,21 @@ spec:   #give double tab for content
               name: app1
               port:
                 number: 80
+
+
+#commands:
+# after applying both manifest files in app1 and app2
+# 130  14/11/24 12:06:58 kubectl get pods -n kube-system
+#   131  14/11/24 12:07:08 kubectl get svc -n kube-system
+#   132  14/11/24 12:13:17 cd k8-ingress/
+#   133  14/11/24 12:13:20 kubectl get pods
+#   134  14/11/24 12:13:30 kubectl get svc
+#   135  14/11/24 12:13:35 cd app2
+#   136  14/11/24 12:13:41 kubectl apply -f manifest.yaml
+#   137  14/11/24 12:13:47 kubectl get pods
+#   138  14/11/24 12:13:52 kubectl get svc
+#   139  14/11/24 12:17:58 kubectl get ingress   ----> load balancer wont show in svc external ip, it will show only in ingress
+#   140  14/11/24 12:19:58 kubectl get ingress -o wide
+#   141  14/11/24 12:20:05 kubectl get pods
+
 
