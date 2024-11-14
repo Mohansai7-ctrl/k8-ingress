@@ -1,3 +1,7 @@
+#Make sure create a certificate and provide certificate arn in Ingress annotation alb.ingress.kubernetes.io/certificate-arn:
+
+
+
 # #writing a simple deployment and service for it and finally ingress resource
 
 # apiVersion: apps/v1
