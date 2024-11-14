@@ -2,6 +2,7 @@
 #Make sure create a certificate and provide certificate arn in Ingress annotation alb.ingress.kubernetes.io/certificate-arn:
 #before creating or executing make sure to install policies and drivers of ingress, OICD OAUTH2 and provide permissions via readme.
 
+#after code and execution is completed make sure to delete the acm certificate and its record and finally delete the route53 records of app1 and app2
 
 
 # #writing a simple deployment and service for it and finally ingress resource
